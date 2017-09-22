@@ -13,6 +13,20 @@ var detectNetwork = function(cardNumber) {
   // The American Express network always starts with a 34 or 37 and is 15 digits long
 
   // Once you've read this, go ahead and try to implement this function, then return to the console.
+  var startNum = cardNumber.substr(0, 2);
+  if ((startNum === '38' || startNum === '39') && cardNumber.length === 14) {
+  	return 'Diner\'s Club';
+  }
+  if ((startNum === '34' || startNum === '37') && cardNumber.length === 15) {
+  	return 'American Express';
+  }
+  if (cardNumber.charAt(0) === '4' && (cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19)) {
+  	return 'Visa';
+ }
+ var masterCardPrefix = ['51', '52', '53', '54', '55'];
+ if ((masterCardPrefix.includes(startNum)) && cardNumber.length === 16) {
+ 	return 'MasterCard';
+ }
 };
 
 
