@@ -23,10 +23,24 @@ var detectNetwork = function(cardNumber) {
   if (cardNumber.charAt(0) === '4' && (cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19)) {
   	return 'Visa';
  }
+
  var masterCardPrefix = ['51', '52', '53', '54', '55'];
  if ((masterCardPrefix.includes(startNum)) && cardNumber.length === 16) {
  	return 'MasterCard';
  }
+
+ var discoverPrefix = ['644', '645', '646', '647', '648', '649'];
+ var discoverCardStart = cardNumber.slice(0, 3);
+ if ((cardNumber.startsWith('6011', 0) || discoverPrefix.includes(discoverPrefix) || startNum === '65') && (cardNumber.length === 16 || cardNumber.length === 19)) {
+ 	return 'Discover';
+ }
+
+ var maestroStartNum = cardNumber.slice(0, 4);
+ var maestroCardLength = [12, 13, 14, 15, 16, 17, 18, 19];
+ if ((maestroStartNum === '5018' || maestroStartNum === '5020' || maestroStartNum === '5038' || maestroStartNum === '6304') && maestroCardLength.includes(cardNumber.length)) {
+ 	return 'Maestro';
+ }
 };
+
 
 
