@@ -285,4 +285,37 @@ describe('should support China UnionPay', function() {
   }
 
 });
-describe('should support Switch')
+
+describe('should support Switch', function() {
+  var should = chai.should();
+
+  var prefix = ['4903', '4905', '4911', '4936', '564182', '633110', '6333', '6759'];
+
+  for (var i = 0; i < prefix.length; i++) {
+    var actual = prefix[i];
+    for (var j = 0; j < 16 - prefix[i].length; j++) {
+      actual += '0';
+    }
+
+    (function(prefix, actual) {
+      it('has a prefix of ' + prefix + ' and a length of 16', function() {
+        detectNetwork(actual).should.equal('Switch');
+      });
+    })(prefix[i], actual)
+
+    actual += '00';
+    (function(prefix, actual) {
+      it('has a prefix of ' + prefix + ' and has a length of 18', function() {
+        detectNetwork(actual).should.equal('Switch');
+      });
+    })(prefix[i], actual)
+
+    actual += '0';
+    (function(prefix, actual) {
+      it('has a prefix of ' + prefix + ' and a length of 19', function() {
+        detectNetwork(actual).should.equal('Switch');
+      });
+    })(prefix[i], actual)
+  }
+
+});

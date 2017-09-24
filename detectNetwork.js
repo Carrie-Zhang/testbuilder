@@ -24,7 +24,7 @@ var detectNetwork = function(cardNumber) {
   if ((twoPrefix === '34' || twoPrefix === '37') && cardNumber.length === 15) {
   	return 'American Express';
   }
-  if (cardNumber.charAt(0) === '4' && (cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19)) {
+  if (cardNumber.charAt(0) === '4' && !(['4903', '4905', '4911', '4936'].includes(fourPrefix)) && (cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19)) {
   	return 'Visa';
  }
 
